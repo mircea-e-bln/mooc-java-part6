@@ -21,34 +21,25 @@ public class SimpleCollection {
 
     public String toString(){
 
-        String printOutput = "";
-        String itemsOnList = "";
-        String collectionSize = "";
+        String printOutput = "The collection " + this.name + " ";
 
         if(elements.isEmpty()){
-           return printOutput = "The collection " + this.name + " is empty.";
+           return printOutput + "is empty.";
         }
 
+        String finalPrintOutput = "";
         for(String iteration: elements){
             
-            itemsOnList = itemsOnList + iteration + "\n";
-        
-
-            if(elements.size() == 1){
-                collectionSize = " element:\n";
-            }
-
-            if(elements.size() > 1){
-                collectionSize = " elements:\n"; 
-            } 
-            
-        
+            finalPrintOutput = finalPrintOutput + "\n" + iteration;
+                    
         }
 
+        if(elements.size() == 1){
+            return printOutput + "has " + elements.size() + " element:" + finalPrintOutput;             
+        }else{
+            return printOutput + "has " + elements.size() + " elements:" + finalPrintOutput;
+        }
 
-        
-        return "The collection " + this.name +  " has " + elements.size() + collectionSize + itemsOnList;
-        
     }
     
 }
