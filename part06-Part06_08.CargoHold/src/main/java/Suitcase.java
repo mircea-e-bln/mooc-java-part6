@@ -48,4 +48,39 @@ public class Suitcase {
         return returnValue;
 
     }
+
+    public void printItems(){
+       
+        for(Item itemIteration: items){
+            System.out.println(itemIteration);
+            
+        }
+    }
+
+    public int totalWeight(){
+        int totalWeight = 0;
+        
+        for(Item per:items){
+            totalWeight = totalWeight + per.getWeight();
+        }
+
+        return totalWeight;
+    }
+
+    public Item heaviestItem(){
+
+       if(this.items.isEmpty()){
+            return null;
+       }
+
+        Item obj = this.items.get(0);
+
+       for(Item per:this.items){
+            if(obj.getWeight() < per.getWeight()){
+                obj = per;
+            }
+       }
+
+       return obj;
+    }
 }
