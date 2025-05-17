@@ -5,6 +5,7 @@ public class TextUI {
     private Scanner scan;
     private SimpleDictionary dictionary;
 
+
     public TextUI(Scanner scan, SimpleDictionary dictionary){
         this.scan = scan;
         this.dictionary = dictionary;
@@ -13,23 +14,50 @@ public class TextUI {
     public void start(){
         while(true){
             System.out.println("Command:");
-            String word = scan.next();
-
-            if(alreadyEntered(word)){
+            String command = scan.next();
+            
+            if(command.equals("end")){
                 System.out.println("Bye bye!");
                 break;
+            } 
+
+            else if(command.equals("add")){
+                addWordCommand();
             }
 
-            System.out.println("Unknown command");
-        }
+            else if(command.equals("search")){
+                searchTranslationCommand();
+            }
 
+            else {
+                System.out.println("Unknown command");
+            }
+
+
+            
+        }
+       
     }
 
-    public boolean alreadyEntered(String word){
-        if(word.equals("end")){
-            return true;
+    public void addWordCommand(){
+        System.out.println("Word:");
+        String word = this.scan.next();
+        System.out.println("Translate:");
+        String translate = this.scan.next();
+        this.dictionary.add(word, translate);
+    }
+
+    public void searchTranslationCommand(){
+        System.out.println("To be translated:");
+        String word = this.scan.next();
+        String translation = this.dictionary.translate(word);
+        
+        if(translation == null){
+            System.out.println("Word " + word + " was not found");
+        } else {
+            System.out.println("Translation: " + translation);
         }
-        return false;
+
     }
 
 
